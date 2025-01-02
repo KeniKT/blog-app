@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Blog</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900&display=swap">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="layout-root">
+    <header class="blog-header">
+      <div class="header-brand">
+        <div class="logo-icon">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path></svg>
+        </div>
+        <h2 class="blog-title">My Blog</h2>
+      </div>
+      <div class="header-actions">
+        <a href="/new" class="new-post-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256">
+            <path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z"/>
+          </svg>
+          New Post
+        </a>
+      </div>
+    </header>
+
+    <div class="blog-container">
+      <h2 class="posts-title">All Posts</h2>
+      
+      <% posts.forEach(post => { %>
+        <div class="post-card">
+          <div class="post-content">
+            <h3 class="post-title"><%= post.title %></h3>
+            <p class="post-preview"><%= post.content.substring(0, 100) + (post.content.length > 100 ? '...' : '') %></p>
+          </div>
+          <div class="post-actions">
+            <a href="/edit/<%= post.id %>" class="edit-button">Edit</a>
+            <form method="POST" action="/delete/<%= post.id %>">
+              <button type="submit" class="delete-button">Delete</button>
+            </form>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</body>
+</html>

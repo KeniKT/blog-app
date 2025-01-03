@@ -1,12 +1,65 @@
-require('dotenv').config();
 const { Pool } = require('pg');
-
 const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
+  user: 'postgres',
+  host: 'localhost',
+  database: 'blog_app',
+  password: '12345',
+  port: 5432,
 });
 
-module.exports = pool;
+// --- Post Logic ---
+
+const getAllPosts = async () => {
+  const result = await pool.query('SELECT * FROM posts ORDER BY created_at DESC');
+  return result.rows;
+};
+
+const getPostById = async (id) => {
+  const result = await pool.query('SELECT * FROM posts WHERE id = $1', [id]);
+  return result.rows[0];
+};
+
+const createPost = async (title, content) => {
+  await pool.query('INSERT INTO posts (title, content) VALUES ($1, $2)', [title, content]);
+};
+
+const updatePost = async (id, title, content) => {
+  await pool.query('UPDATE posts SET title = $1, content = $2 WHERE id = $3', [title, content, id]);
+};
+
+const deletePost = async (id) => {
+  await pool.query('DELETE FROM posts WHERE id = $1', [id]);
+};
+
+// --- Comment Logic ---
+
+const getAllComments = async () => {
+  const result = await pool.query('SELECT * FROM comments ORDER BY created_at ASC');
+  return result.rows;
+};
+
+const createComment = async (postId, content) => {
+  await pool.query('INSERT INTO comments (post_id, content) VALUES ($1, $2)', [postId, content]);
+};
+
+const updateComment = async (id, content) => {
+  await pool.query('UPDATE comments SET content = $1 WHERE id = $2', [content, id]);
+};
+
+const deleteComment = async (id) => {
+  await pool.query('DELETE FROM comments WHERE id = $1', [id]);
+};
+
+// --- Export Functions ---
+
+module.exports = {
+  getAllPosts,
+  getPostById,
+  createPost,
+  updatePost,
+  deletePost,
+  getAllComments,
+  createComment,
+  updateComment,
+  deleteComment
+};

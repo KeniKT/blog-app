@@ -1,18 +1,140 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Edit Post</title>
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+    }
+    .layout-root {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .blog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .blog-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0;
+    }
+    .logo-icon svg {
+      width: 30px;
+      height: 30px;
+      color: #333;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-control {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+    }
+    textarea.form-control {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .btn-icon-outline {
+      background-color: transparent;
+      border: 1px solid #ccc;
+      color: #333;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 16px;
+      font-size: 15px;
+      font-weight: 500;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .btn-icon-outline:hover {
+      background-color: #f0f0f0;
+    }
+    .btn-icon-outline svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+    .btn-icon-outline.ml-4 {
+      margin-left: 16px;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Edit Post</h1>
-    <form method="POST" action="/edit/<%= post.id %>">
-      <input name="title" value="<%= post.title %>" required />
-      <textarea name="content" required><%= post.content %></textarea>
-      <button>Save</button>
-    </form>
-    <a href="/" class="link">← Back</a>
+  <div class="layout-root">
+    <header class="blog-header">
+      <div class="header-brand">
+        <div class="logo-icon">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor" />
+          </svg>
+        </div>
+        <h2 class="blog-title">My Blog</h2>
+      </div>
+      <div class="header-actions">
+        <a href="/" class="btn-icon-outline">
+          <!-- Back icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Back to Posts
+        </a>
+      </div>
+    </header>
+
+    <div class="container">
+      <h1 class="posts-title">Edit Post</h1>
+      <form method="POST" action="/edit/<%= post.id %>">
+        <div class="form-group">
+          <input type="text" name="title" value="<%= post.title %>" class="form-control" required />
+        </div>
+        <div class="form-group">
+          <textarea name="content" class="form-control" required><%= post.content %></textarea>
+        </div>
+        <button type="submit" class="btn-icon-outline">
+          <!-- Save icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          Save Changes
+        </button>
+        <a href="/" class="btn-icon-outline ml-4">
+          <!-- Cancel icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+          Cancel
+        </a>
+      </form>
+    </div>
   </div>
 </body>
 </html>

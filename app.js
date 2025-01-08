@@ -7,18 +7,41 @@ const app = express();
 
 // Set view engine and static files
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Routes
+// Landing page route - pass recent posts
+app.get('/landing', async (req, res) => {
+  try {
+    const posts = await db.getRecentPosts(); // You need to define this in db.js
+    res.render('landing', { posts });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server error');
+  }
+});
+
+
 
 // Home page - list posts with comments grouped
+// Landing page as default route
 app.get('/', async (req, res) => {
+  try {
+    const posts = await db.getRecentPosts();
+    res.render('landing', { posts });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server error');
+  }
+});
+
+// Blog route (shows index.ejs)
+app.get('/blog', async (req, res) => {
   try {
     const posts = await db.getAllPosts();
     const comments = await db.getAllComments();
 
-    // Group comments by post ID
     const commentsByPost = {};
     comments.forEach(comment => {
       if (!commentsByPost[comment.post_id]) {
@@ -33,6 +56,8 @@ app.get('/', async (req, res) => {
     res.status(500).send('Database error');
   }
 });
+
+// Remove the old '/' route that showed index.ejs
 
 // Render new post form
 app.get('/new', (req, res) => {
@@ -111,6 +136,16 @@ app.post('/comment/delete/:id', async (req, res) => {
   } catch (err) {
     res.status(500).send('Failed to delete comment');
   }
+});
+
+// About page route
+app.get('/about', (req, res) => {
+  res.render('about'); // You'll need to create an about.ejs file
+});
+
+// Contact page route
+app.get('/contact', (req, res) => {
+  res.render('contact'); // You'll need to create a contact.ejs file
 });
 
 const PORT = 3000;

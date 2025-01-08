@@ -1,4 +1,5 @@
 const { Pool } = require('pg');
+
 const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
@@ -50,6 +51,15 @@ const deleteComment = async (id) => {
   await pool.query('DELETE FROM comments WHERE id = $1', [id]);
 };
 
+// --- Recent Posts Logic ---
+
+const getRecentPosts = async () => {
+  const result = await pool.query(
+    'SELECT * FROM posts ORDER BY created_at DESC LIMIT 10' // ← changed from 3 to 10
+  );
+  return result.rows;
+};
+
 // --- Export Functions ---
 
 module.exports = {
@@ -61,5 +71,6 @@ module.exports = {
   getAllComments,
   createComment,
   updateComment,
-  deleteComment
+  deleteComment,
+  getRecentPosts
 };

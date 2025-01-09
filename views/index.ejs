@@ -1,353 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Blog</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg-main: linear-gradient(135deg, #e0f2ff, #f7fbff); /* Light blue gradient */
-    --color-surface: #ffffffee; /* Almost-white, with a hint of blue overlay */
-    --color-primary: #3b82f6;   /* Wix-like blue */
-    --color-text: #1e293b;      /* Dark slate for contrast */
-    --color-muted: #64748b;     /* Muted slate for secondary text */
-    --color-border: #dbeafe;    /* Light blue border */
-    --radius: 14px;
-    --shadow: 0 6px 18px rgba(59, 130, 246, 0.08); /* Soft blue shadow */
-  }
-
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--bg-main);
-    color: var(--color-text);
-    min-height: 100vh;
-    padding: 0;
-    margin: 0;
-    background-attachment: fixed;
-  }
-
-  .layout-root {
-    max-width: 900px;
-    margin: auto;
-    padding: 40px 20px;
-  }
-
-  .blog-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 48px;
-  }
-
-  .header-brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .logo-icon svg {
-    width: 36px;
-    height: 36px;
-    color: var(--color-primary);
-  }
-
-  .blog-title {
-    font-size: 2rem;
-    font-weight: 700;
-  }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 10px 16px;
-    font-size: 15px;
-    font-weight: 500;
-    border-radius: var(--radius);
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.2s ease-in-out;
-    border: none;
-  }
-
-  .btn-primary {
-    background: var(--color-primary);
-    color: white;
-  }
-
-  .btn-primary:hover {
-    background: #2563eb;
-    box-shadow: var(--shadow);
-  }
-
-  .btn-outline {
-    background: transparent;
-    border: 1px solid var(--color-border);
-    color: var(--color-text);
-  }
-
-  .btn-outline:hover {
-    background: #eff6ff;
-  }
-
-  .btn-danger {
-    color: #ef4444;
-    background: transparent;
-  }
-
-  .btn-danger:hover {
-    background: #fee2e2;
-  }
-
-  .btn-icon {
-    width: 16px;
-    height: 16px;
-  }
-
-  .posts-title {
-    font-size: 1.5rem;
-    margin-bottom: 24px;
-    font-weight: 600;
-  }
-
-  .post-card {
-    background: var(--color-surface);
-    padding: 24px;
-    border-radius: var(--radius);
-    margin-bottom: 32px;
-    box-shadow: var(--shadow);
-    transition: transform 0.2s ease;
-    border: 1px solid var(--color-border);
-  }
-
-  .post-card:hover {
-    transform: translateY(-2px);
-  }
-
-  .post-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-
-  .post-preview {
-    font-size: 15px;
-    color: var(--color-muted);
-    margin-bottom: 10px;
-  }
-
-  .post-actions-bar {
-    display: flex;
-    gap: 12px;
-    margin-top: 12px;
-  }
-
-  .action-btn {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 6px;
-    border-radius: 6px;
-    transition: background 0.2s ease;
-  }
-
-  .action-btn:hover {
-    background: #e0f2fe;
-  }
-
-  .icon {
-    width: 18px;
-    height: 18px;
-    color: var(--color-muted);
-  }
-
-  .post-comments {
-    margin-top: 20px;
-  }
-
-  .comment-heading {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 12px;
-  }
-
-  .comment-block {
-    padding: 12px 0;
-    border-bottom: 1px solid #dbeafe;
-  }
-
-  .comment-text {
-    font-size: 15px;
-    margin-bottom: 8px;
-    color: #334155;
-  }
-
-  .form-control {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-    font-size: 14px;
-    transition: border 0.2s ease, box-shadow 0.2s ease;
-    background-color: white;
-  }
-
-  .form-control:focus {
-    outline: none;
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-  }
-
-  .flex {
-    display: flex;
-  }
-
-  .gap-2 {
-    gap: 8px;
-  }
-
-  .mt-2 {
-    margin-top: 0.5rem;
-  }
-
-  .mt-4 {
-    margin-top: 1rem;
-  }
-
-  @media (max-width: 640px) {
-    .layout-root {
-      padding: 20px 12px;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Articles - Tech Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    /* Consistent with other pages */
+    body {
+      margin: 0;
+      font-family: 'Newsreader', 'Noto Sans', sans-serif;
+      background-color: #f8fafc;
+      color: #0d141c;
     }
 
-    .blog-header {
-      flex-direction: column;
-      align-items: flex-start;
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e7edf4;
+      padding: 12px 40px;
+      background-color: #fff;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
       gap: 16px;
     }
 
+    nav a {
+      text-decoration: none;
+      color: #0d141c;
+      font-weight: 500;
+      font-size: 14px;
+      margin-right: 36px;
+    }
+
+    nav a:last-child {
+      margin-right: 0;
+    }
+
+    .search-avatar {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .search-box {
+      min-width: 160px;
+      height: 40px;
+      display: flex;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: #e7edf4;
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      background-color: #e7edf4;
+      padding: 0 16px;
+      flex: 1;
+      font-size: 16px;
+      color: #0d141c;
+    }
+
+    .search-box .icon {
+      padding-left: 16px;
+      display: flex;
+      align-items: center;
+      color: #49739c;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 9999px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Main content styling */
+    .layout-root {
+      max-width: 920px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .posts-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 32px;
+      color: #0d141c;
+    }
+
     .post-card {
-      padding: 18px;
+      background-color: #ffffff;
+      border: 1px solid #e7edf4;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+      transition: transform 0.2s ease;
+    }
+
+    .post-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .post-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #0d141c;
+    }
+
+    .post-preview {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #3a3a3a;
+      margin-bottom: 16px;
     }
 
     .post-actions-bar {
-      flex-direction: column;
+      display: flex;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background-color: #3d98f4;
+      color: white;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #2b7dc7;
+    }
+
+    .btn-danger {
+      background-color: #fee2e2;
+      color: #dc2626;
+      border: none;
+    }
+
+    .btn-danger:hover {
+      background-color: #fecaca;
+    }
+
+    .comment-section {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid #e7edf4;
+    }
+
+    .comment-heading {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .comment-block {
+      padding: 12px 0;
+      border-bottom: 1px solid #e7edf4;
+    }
+
+    .comment-text {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #3a3a3a;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid #e7edf4;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: #3d98f4;
+      box-shadow: 0 0 0 2px rgba(61, 152, 244, 0.1);
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .gap-2 {
       gap: 8px;
     }
-  }
-</style>
 
+    .mt-4 {
+      margin-top: 16px;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 16px;
+        padding: 12px 20px;
+      }
+
+      .logo-container {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      nav {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .search-avatar {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .layout-root {
+        padding: 0 12px;
+      }
+
+      .post-card {
+        padding: 16px;
+      }
+
+      .post-title {
+        font-size: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="layout-root">
-    <header class="blog-header">
-      <div class="header-brand">
-        <div class="logo-icon">
+  <header>
+    <div class="logo-container">
+      <div class="logo">
+        <div style="width: 16px; height: 16px;">
           <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor" />
+            <path d="M39.5563 34.1455V13.8546..." fill="currentColor"></path>
+            <path d="M10.4485 13.8519C10.4749 13.9271..." fill="currentColor"></path>
           </svg>
         </div>
-        <h2 class="blog-title">My Blog</h2>
+        <h2 style="font-size: 18px; font-weight: bold; margin: 0;">Tech Blog</h2>
       </div>
-      <div class="header-actions">
-        <a href="/new" class="btn btn-primary">
-          <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256">
-            <path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z" />
-          </svg>
-          New Post
-        </a>
-      </div>
-    </header>
-
-    <div class="blog-container">
-      <h2 class="posts-title">All Posts</h2>
-
-      <% posts.forEach(post => { %>
-        <div class="post-card">
-          <div class="post-content">
-            <h3 class="post-title"><%= post.title %></h3>
-            <p class="post-preview">
-              <%= post.content.substring(0, 100) + (post.content.length > 100 ? '...' : '') %>
-            </p>
-          </div>
-
-       <!-- Comments Section -->
-<div class="post-comments">
-  <h4 class="comment-heading">Comments</h4>
-
-  <% (commentsByPost[post.id] || []).forEach(comment => { %>
-    <div class="comment-block">
-      <p class="comment-text"><%= comment.content %></p>
-
-      <!-- Edit Comment Form -->
-      <form method="POST" action="/comment/edit/<%= comment.id %>" class="flex items-center gap-2 mt-2">
-        <input type="text" name="content" value="<%= comment.content %>" class="form-control text-sm" required />
-        <button type="submit" class="btn btn-outline text-sm" title="Update Comment">
-          <!-- Checkmark Icon -->
-          <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20 6L9 17l-5-5"/>
-          </svg>
-        </button>
-      </form>
-
-      <!-- Delete Comment Form -->
-      <form method="POST" action="/comment/delete/<%= comment.id %>" class="flex items-center gap-2 mt-2">
-        <button type="submit" class="btn btn-danger text-sm" title="Delete Comment">
-          <!-- Trash Icon -->
-          <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-          </svg>
-        </button>
-      </form>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/blog">Articles</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+      </nav>
     </div>
-  <% }) %>
-
-  <!-- Add Comment Form -->
-  <form method="POST" action="/comments/<%= post.id %>" class="mt-4 flex gap-2">
-    <input
-      type="text"
-      name="content"
-      placeholder="Add a comment..."
-      class="form-control"
-      required
-    />
-    <button type="submit" class="btn btn-primary" title="Add Comment">
-      <!-- Plus Icon -->
-      <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 256 256">
-        <path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z"/>
-      </svg>
-    </button>
-  </form>
-</div>
-
-
-          <div class="post-actions-bar">
-  <a href="/edit/<%= post.id %>" class="action-btn" title="Edit">
-    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-      <path d="M17 3a2.828 2.828 0 0 1 4 4L7 21H3v-4L17 3z" />
-    </svg>
-  </a>
-
-  <form method="POST" action="/delete/<%= post.id %>" class="inline-form" onsubmit="return confirm('Are you sure you want to delete this post?');">
-    <button type="submit" class="action-btn" title="Delete">
-      <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-      </svg>
-    </button>
-  </form>
-</div>
-
+    <div class="search-avatar">
+      <div class="search-box">
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#49739c" viewBox="0 0 256 256">
+            <path d="M229.66,218.34l-50.07-50.06a88.11,88.11..." />
+          </svg>
         </div>
-      <% }) %>
+        <input type="text" placeholder="Search" />
+      </div>
+      <div class="avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/...');"></div>
     </div>
+  </header>
+
+  <div class="layout-root">
+    <h2 class="posts-title">All Articles</h2>
+
+    <% posts.forEach(post => { %>
+      <div class="post-card">
+        <div class="post-content">
+          <h3 class="post-title"><%= post.title %></h3>
+          <p class="post-preview">
+            <%= post.content.substring(0, 100) + (post.content.length > 100 ? '...' : '') %>
+          </p>
+        </div>
+
+        <div class="comment-section">
+          <h4 class="comment-heading">Comments</h4>
+
+          <% (commentsByPost[post.id] || []).forEach(comment => { %>
+            <div class="comment-block">
+              <p class="comment-text"><%= comment.content %></p>
+              <div class="flex gap-2 mt-4">
+                <form method="POST" action="/comment/edit/<%= comment.id %>" class="flex gap-2">
+                  <input type="text" name="content" value="<%= comment.content %>" class="form-control" required>
+                  <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+                <form method="POST" action="/comment/delete/<%= comment.id %>">
+                  <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+              </div>
+            </div>
+          <% }) %>
+
+          <form method="POST" action="/comments/<%= post.id %>" class="mt-4 flex gap-2">
+            <input type="text" name="content" placeholder="Add a comment..." class="form-control" required>
+            <button type="submit" class="btn btn-primary">Comment</button>
+          </form>
+        </div>
+
+        <div class="post-actions-bar">
+          <a href="/edit/<%= post.id %>" class="btn btn-primary">Edit</a>
+          <form method="POST" action="/delete/<%= post.id %>">
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+      </div>
+    <% }) %>
   </div>
 </body>
 </html>

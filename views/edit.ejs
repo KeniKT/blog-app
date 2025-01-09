@@ -1,199 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Edit Post</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Post - Tech Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
   <style>
+    /* Consistent with About page styling */
     body {
-      font-family: 'Inter', sans-serif;
       margin: 0;
-      background: #dceefd; /* light blue Wix-style background */
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 40px 20px;
-    }
-    .layout-root {
-      max-width: 800px;
-      width: 100%;
-      background: #e6f0ff; /* lighter compatible card background */
-      padding: 30px 40px;
-      border-radius: 14px;
-      box-shadow: 0 12px 24px rgba(0, 82, 204, 0.12);
-      box-sizing: border-box;
-    }
-    .blog-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 30px;
-    }
-    .header-brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .blog-title {
-      font-size: 1.75rem;
-      font-weight: 700;
-      color: #0a2d6d;
-      margin: 0;
-    }
-    .logo-icon svg {
-      width: 36px;
-      height: 36px;
-      color: #0a2d6d;
-    }
-    .header-actions .btn-icon-outline {
-      background-color: transparent;
-      border: 1.5px solid #0a2d6d;
-      color: #0a2d6d;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 18px;
-      font-size: 15px;
-      font-weight: 600;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      text-decoration: none;
-      user-select: none;
-    }
-    .header-actions .btn-icon-outline:hover {
-      background-color: #0a2d6d;
-      color: #e6f0ff;
-    }
-    .header-actions .btn-icon-outline svg {
-      width: 20px;
-      height: 20px;
-      stroke: currentColor;
-      stroke-width: 2;
+      font-family: 'Newsreader', 'Noto Sans', sans-serif;
+      background-color: #f8fafc;
+      color: #0d141c;
     }
 
-    h1.posts-title {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #0a2d6d;
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e7edf4;
+      padding: 12px 40px;
+      background-color: #fff;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #0d141c;
+      font-weight: 500;
+      font-size: 14px;
+      margin-right: 36px;
+    }
+
+    nav a:last-child {
+      margin-right: 0;
+    }
+
+    .search-avatar {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .search-box {
+      min-width: 160px;
+      height: 40px;
+      display: flex;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: #e7edf4;
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      background-color: #e7edf4;
+      padding: 0 16px;
+      flex: 1;
+      font-size: 16px;
+      color: #0d141c;
+    }
+
+    .search-box .icon {
+      padding-left: 16px;
+      display: flex;
+      align-items: center;
+      color: #49739c;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 9999px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Edit page specific styling */
+    .edit-hero {
+      padding: 40px 24px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .edit-inner {
+      max-width: 920px;
+      width: 100%;
+    }
+
+    .edit-content {
+      background-color: #ffffff;
+      border: 1px solid #e7edf4;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    }
+
+    .edit-title {
+      font-size: 36px;
+      font-weight: 900;
+      margin-bottom: 32px;
+      color: #0d141c;
+    }
+
+    .form-group {
       margin-bottom: 24px;
     }
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .form-group {
-      display: flex;
-      flex-direction: column;
-    }
+
     .form-control {
-      padding: 14px 16px;
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #e7edf4;
+      border-radius: 8px;
       font-size: 16px;
-      font-weight: 500;
-      border-radius: 10px;
-      border: 2px solid #a8c4ff;
-      background-color: #f0f7ff;
-      color: #0a2d6d;
-      font-family: 'Inter', sans-serif;
-      transition: border-color 0.3s ease;
-      box-sizing: border-box;
+      font-family: inherit;
+      transition: border-color 0.2s ease;
     }
+
     .form-control:focus {
-      border-color: #0a2d6d;
       outline: none;
-      background-color: #e6f0ff;
+      border-color: #3d98f4;
+      box-shadow: 0 0 0 2px rgba(61, 152, 244, 0.1);
     }
+
     textarea.form-control {
-      min-height: 140px;
+      min-height: 200px;
       resize: vertical;
     }
-    button.btn-icon-outline,
-    a.btn-icon-outline {
-      background-color: transparent;
-      border: 2px solid #0a2d6d;
-      color: #0a2d6d;
-      font-weight: 600;
-      padding: 14px 22px;
-      font-size: 16px;
-      border-radius: 10px;
+
+    .btn-primary {
+      background-color: #3d98f4;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
       cursor: pointer;
-      user-select: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      font-weight: 600;
+      font-size: 16px;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #2b7dc7;
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 1px solid #e7edf4;
+      color: #0d141c;
+      padding: 12px 24px;
+      border-radius: 8px;
       text-decoration: none;
-      box-sizing: border-box;
+      transition: background-color 0.2s ease;
     }
-    button.btn-icon-outline:hover,
-    a.btn-icon-outline:hover {
-      background-color: #0a2d6d;
-      color: #e6f0ff;
+
+    .btn-outline:hover {
+      background-color: #f8fafc;
     }
-    button.btn-icon-outline svg,
-    a.btn-icon-outline svg {
-      width: 22px;
-      height: 22px;
-      stroke: currentColor;
-      stroke-width: 2;
+
+    .button-group {
+      display: flex;
+      gap: 16px;
+      margin-top: 32px;
     }
-    a.btn-icon-outline.ml-4 {
-      margin-left: 20px;
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 16px;
+        padding: 12px 20px;
+      }
+      
+      .logo-container {
+        width: 100%;
+        justify-content: space-between;
+      }
+      
+      nav {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+      
+      .search-avatar {
+        width: 100%;
+        justify-content: space-between;
+      }
+      
+      .edit-content {
+        padding: 24px;
+      }
+      
+      .edit-title {
+        font-size: 28px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="layout-root">
-    <header class="blog-header">
-      <div class="header-brand">
-        <div class="logo-icon">
+  <header>
+    <div class="logo-container">
+      <div class="logo">
+        <div style="width: 16px; height: 16px;">
           <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor" />
+            <path d="M39.5563 34.1455V13.8546..." fill="currentColor"></path>
+            <path d="M10.4485 13.8519C10.4749 13.9271..." fill="currentColor"></path>
           </svg>
         </div>
-        <h2 class="blog-title">My Blog</h2>
+        <h2 style="font-size: 18px; font-weight: bold; margin: 0;">Tech Blog</h2>
       </div>
-      <div class="header-actions">
-        <a href="/" class="btn-icon-outline" title="Back to Posts">
-          <!-- Back icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      <nav>
+        <a href="/">Home</a>
+        <a href="/blog">Articles</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+      </nav>
+    </div>
+    <div class="search-avatar">
+      <div class="search-box">
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#49739c" viewBox="0 0 256 256">
+            <path d="M229.66,218.34l-50.07-50.06a88.11,88.11..." />
           </svg>
-          Back to Posts
-        </a>
+        </div>
+        <input type="text" placeholder="Search" />
       </div>
-    </header>
+      <div class="avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/...');"></div>
+    </div>
+  </header>
 
-    <h1 class="posts-title">Edit Post</h1>
-    <form method="POST" action="/edit/<%= post.id %>">
-      <div class="form-group">
-        <input type="text" name="title" value="<%= post.title %>" class="form-control" required />
+  <div class="edit-hero">
+    <div class="edit-inner">
+      <div class="edit-content">
+        <h1 class="edit-title">Edit Post</h1>
+        <form method="POST" action="/edit/<%= post.id %>">
+          <div class="form-group">
+            <input type="text" name="title" value="<%= post.title %>" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <textarea name="content" class="form-control" required><%= post.content %></textarea>
+          </div>
+          <div class="button-group">
+            <button type="submit" class="btn-primary">Save Changes</button>
+            <a href="/" class="btn-outline">Cancel</a>
+          </div>
+        </form>
       </div>
-      <div class="form-group">
-        <textarea name="content" class="form-control" required><%= post.content %></textarea>
-      </div>
-      <div>
-        <button type="submit" class="btn-icon-outline">
-          <!-- Save icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
-          Save Changes
-        </button>
-        <a href="/" class="btn-icon-outline ml-4" title="Cancel">
-          <!-- Cancel icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-          Cancel
-        </a>
-      </div>
-    </form>
+    </div>
   </div>
 </body>
 </html>

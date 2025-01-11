@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Tech Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    /* Consistent with landing and about pages */
+    body {
+      margin: 0;
+      font-family: 'Newsreader', 'Noto Sans', sans-serif;
+      background-color: #f8fafc;
+      color: #0d141c;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e7edf4;
+      padding: 12px 40px;
+      background-color: #fff;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #0d141c;
+      font-weight: 500;
+      font-size: 14px;
+      margin-right: 36px;
+    }
+
+    nav a:last-child {
+      margin-right: 0;
+    }
+
+    .search-avatar {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .search-box {
+      min-width: 160px;
+      height: 40px;
+      display: flex;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: #e7edf4;
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      background-color: #e7edf4;
+      padding: 0 16px;
+      flex: 1;
+      font-size: 16px;
+      color: #0d141c;
+    }
+
+    .search-box .icon {
+      padding-left: 16px;
+      display: flex;
+      align-items: center;
+      color: #49739c;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 9999px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Contact page specific styling */
+    .contact-hero {
+      padding: 40px 24px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .contact-inner {
+      max-width: 920px;
+      width: 100%;
+    }
+
+    .contact-content {
+      background-color: #ffffff;
+      border: 1px solid #e7edf4;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    }
+
+    .contact-title {
+      font-size: 36px;
+      font-weight: 900;
+      margin-bottom: 32px;
+      color: #0d141c;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    label {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    input, textarea {
+      padding: 12px 16px;
+      border: 1px solid #e7edf4;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 16px;
+      background-color: #fff;
+      transition: border-color 0.2s;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #3d98f4;
+      box-shadow: 0 0 0 2px rgba(61, 152, 244, 0.1);
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    button[type="submit"] {
+      background-color: #3d98f4;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 16px;
+      transition: background-color 0.2s;
+      align-self: flex-start;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #2b7dc7;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 16px;
+        padding: 12px 20px;
+      }
+      
+      .logo-container {
+        width: 100%;
+        justify-content: space-between;
+      }
+      
+      nav {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+      
+      nav a {
+        margin-right: 0;
+      }
+      
+      .search-avatar {
+        width: 100%;
+        justify-content: space-between;
+      }
+      
+      .contact-content {
+        padding: 24px;
+      }
+      
+      .contact-title {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <div class="logo">
+        <div style="width: 16px; height: 16px;">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M39.5563 34.1455V13.8546..." fill="currentColor"></path>
+            <path d="M10.4485 13.8519C10.4749 13.9271..." fill="currentColor"></path>
+          </svg>
+        </div>
+        <h2 style="font-size: 18px; font-weight: bold; margin: 0;">Tech Blog</h2>
+      </div>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/blog">Articles</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+      </nav>
+    </div>
+    <div class="search-avatar">
+      <div class="search-box">
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#49739c" viewBox="0 0 256 256">
+            <path d="M229.66,218.34l-50.07-50.06a88.11,88.11..." />
+          </svg>
+        </div>
+        <input type="text" placeholder="Search" />
+      </div>
+      <div class="avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/...');"></div>
+    </div>
+  </header>
+
+  <div class="contact-hero">
+    <div class="contact-inner">
+      <div class="contact-content">
+        <h1 class="contact-title">Get in Touch</h1>
+        <form class="contact-form" method="POST" action="/contact">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required placeholder="John Doe">
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="john@example.com">
+          </div>
+          <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" required placeholder="Type your message here..."></textarea>
+          </div>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

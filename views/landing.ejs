@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tech Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Newsreader', 'Noto Sans', sans-serif;
+      background-color: #f8fafc;
+      color: #0d141c;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e7edf4;
+      padding: 12px 40px;
+      background-color: #fff;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #0d141c;
+      font-weight: 500;
+      font-size: 14px;
+      margin-right: 36px;
+    }
+
+    nav a:last-child {
+      margin-right: 0;
+    }
+
+    .search-avatar {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .search-box {
+      min-width: 160px;
+      height: 40px;
+      display: flex;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: #e7edf4;
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      background-color: #e7edf4;
+      padding: 0 16px;
+      flex: 1;
+      font-size: 16px;
+      color: #0d141c;
+    }
+
+    .search-box .icon {
+      padding-left: 16px;
+      display: flex;
+      align-items: center;
+      color: #49739c;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 9999px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero {
+      padding: 20px 24px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-inner {
+      max-width: 920px;
+      width: 100%;
+    }
+
+    .hero-banner {
+      min-height: 480px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 12px;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 16px;
+      color: white;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)),
+        url('https://lh3.googleusercontent.com/aida-public/...');
+    }
+
+    .hero-banner h1 {
+      font-size: 36px;
+      font-weight: 900;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .hero-banner h2 {
+      font-size: 16px;
+      font-weight: 400;
+      margin: 8px 0 0;
+    }
+
+    .read-more-btn {
+      background-color: #3d98f4;
+      color: white;
+      padding: 10px 20px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      width: fit-content;
+    }
+
+    .recent-posts-title {
+      font-size: 22px;
+      font-weight: bold;
+      margin: 32px 0 16px;
+    }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(158px, 1fr));
+      gap: 12px;
+    }
+
+    .post {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .post-img {
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 aspect ratio */
+      background-size: cover;
+      background-position: center;
+      border-radius: 8px;
+    }
+
+    .post p {
+      margin: 0;
+      font-weight: bold;
+    }
+
+    .recent-post-box {
+  background-color: #ffffff;
+  border: 1px solid #e7edf4;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.recent-post-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.recent-post-content {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #3a3a3a;
+  margin-bottom: 16px;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.comment-form textarea {
+  resize: vertical;
+  min-height: 60px;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.comment-form button {
+  align-self: flex-start;
+  background-color: #3d98f4;
+  color: #fff;
+  font-weight: 600;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.comments-section {
+  margin-top: 16px;
+  padding-left: 10px;
+  border-left: 3px solid #d3e4f5;
+}
+
+.comment {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #4a4a4a;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #0d141c;
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  nav a:hover {
+    background-color: #f8fafc;
+  }
+
+  .nav-icon {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+  </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-container">
+      <div class="logo">
+        <div style="width: 16px; height: 16px;">
+          <!-- SVG Logo -->
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M39.5563 34.1455V13.8546..." fill="currentColor"></path>
+            <path d="M10.4485 13.8519C10.4749 13.9271..." fill="currentColor"></path>
+          </svg>
+        </div>
+        <h2 style="font-size: 18px; font-weight: bold; margin: 0;">Tech Blog</h2>
+      </div>
+     <nav>
+  <a href="/">Home</a>
+  <a href="/blog">Articles</a>
+  <a href="/about">About</a>
+  <a href="/contact">Contact</a>
+  <a href="/new">
+    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+    </svg>
+    New Blog
+  </a>
+</nav>
+    </div>
+
+    <div class="search-avatar">
+      <div class="search-box">
+        <div class="icon">
+          <!-- Search Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#49739c" viewBox="0 0 256 256">
+            <path d="M229.66,218.34l-50.07-50.06a88.11,88.11..." />
+          </svg>
+        </div>
+        <input type="text" placeholder="Search" />
+      </div>
+      <div class="avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/...');"></div>
+    </div>
+  </header>
+
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-banner">
+        <div>
+          <h1>The Future of Work: Embracing Remote Collaboration</h1>
+          <h2>Explore the latest trends in remote work, tools for effective collaboration, and strategies for maintaining productivity in a distributed team.</h2>
+        </div>
+      </div>
+
+      <h2 class="recent-posts-title">Recent Posts</h2>
+
+<% posts.forEach(post => { %>
+  <div class="recent-post-box">
+    <h3 class="recent-post-title"><%= post.title %></h3>
+    <p class="recent-post-content"><%= post.content.length > 200 ? post.content.substring(0, 200) + '...' : post.content %></p>
+
+    <!-- Comment Form -->
+    <form action="/comments/<%= post.id %>" method="POST" class="comment-form">
+      <textarea name="content" placeholder="Leave a comment..." required></textarea>
+      <button type="submit">Comment</button>
+    </form>
+
+    <!-- Display Comments -->
+    <% if (post.comments && post.comments.length > 0) { %>
+      <div class="comments-section">
+        <% post.comments.forEach(comment => { %>
+          <div class="comment">
+            <p><%= comment.content %></p>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+  </div>
+<% }) %>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

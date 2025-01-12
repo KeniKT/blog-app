@@ -5,148 +5,128 @@ const path = require('path');
 
 const app = express();
 
-// Set view engine and static files
+// Configuration
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Landing page route - pass recent posts
-app.get('/landing', async (req, res) => {
-  try {
-    const posts = await db.getRecentPosts(); // You need to define this in db.js
-    res.render('landing', { posts });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Server error');
-  }
-});
-
-
-
-// Home page - list posts with comments grouped
-// Landing page as default route
+// Routes
 app.get('/', async (req, res) => {
   try {
-    const posts = await db.getRecentPosts();
+    const posts = await db.getRecentPostsWithComments();
     res.render('landing', { posts });
   } catch (error) {
-    console.error(error);
-    res.status(500).send('Server error');
+    console.error('Root route error:', error);
+    res.status(500).render('error', { message: 'Failed to load posts' });
   }
 });
 
-// Blog route (shows index.ejs)
 app.get('/blog', async (req, res) => {
   try {
     const posts = await db.getAllPosts();
-    const comments = await db.getAllComments();
-
-    const commentsByPost = {};
-    comments.forEach(comment => {
-      if (!commentsByPost[comment.post_id]) {
-        commentsByPost[comment.post_id] = [];
-      }
-      commentsByPost[comment.post_id].push(comment);
-    });
-
-    res.render('index', { posts, commentsByPost });
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Database error');
+    res.render('index', { posts });
+  } catch (error) {
+    console.error('Blog route error:', error);
+    res.status(500).render('error', { message: 'Failed to load articles' });
   }
 });
 
-// Remove the old '/' route that showed index.ejs
-
-// Render new post form
 app.get('/new', (req, res) => {
   res.render('new');
 });
 
-// Create a new post
 app.post('/posts', async (req, res) => {
-  const { title, content } = req.body;
   try {
+    const { title, content } = req.body;
     await db.createPost(title, content);
-    res.redirect('/');
-  } catch (err) {
-    res.status(500).send('Failed to create post');
+    res.redirect('/#posts-top');
+  } catch (error) {
+    console.error('Create post error:', error);
+    res.status(500).render('error', { message: 'Failed to create post' });
   }
 });
 
-// Render edit post form
 app.get('/edit/:id', async (req, res) => {
   try {
     const post = await db.getPostById(req.params.id);
     res.render('edit', { post });
-  } catch (err) {
-    res.status(500).send('Post not found');
+  } catch (error) {
+    console.error('Edit post error:', error);
+    res.status(500).render('error', { message: 'Post not found' });
   }
 });
 
-// Update a post
 app.post('/edit/:id', async (req, res) => {
-  const { title, content } = req.body;
   try {
+    const { title, content } = req.body;
     await db.updatePost(req.params.id, title, content);
-    res.redirect('/');
-  } catch (err) {
-    res.status(500).send('Failed to update post');
+    res.redirect(`/#post-${req.params.id}`);
+  } catch (error) {
+    console.error('Update post error:', error);
+    res.status(500).render('error', { message: 'Failed to update post' });
   }
 });
 
-// Delete a post
 app.post('/delete/:id', async (req, res) => {
   try {
     await db.deletePost(req.params.id);
-    res.redirect('/');
-  } catch (err) {
-    res.status(500).send('Failed to delete post');
+    res.redirect('/#posts-top');
+  } catch (error) {
+    console.error('Delete post error:', error);
+    res.status(500).render('error', { message: 'Failed to delete post' });
   }
 });
 
-// Add a comment to a post
 app.post('/comments/:postId', async (req, res) => {
-  const { content } = req.body;
-  const { postId } = req.params;
   try {
+    const { content } = req.body;
+    const { postId } = req.params;
     await db.createComment(postId, content);
-    res.redirect('/');
-  } catch (err) {
-    res.status(500).send('Failed to submit comment');
+    res.redirect(`/#post-${postId}`);
+  } catch (error) {
+    console.error('Create comment error:', error);
+    res.status(500).render('error', { message: 'Failed to add comment' });
   }
 });
 
-// Edit a comment
 app.post('/comment/edit/:id', async (req, res) => {
   try {
+    const comment = await db.getCommentById(req.params.id);
     await db.updateComment(req.params.id, req.body.content);
-    res.redirect('/');
-  } catch (err) {
-    res.status(500).send('Failed to update comment');
+    res.redirect(`/#post-${comment.post_id}`);
+  } catch (error) {
+    console.error('Edit comment error:', error);
+    res.status(500).render('error', { message: 'Failed to update comment' });
   }
 });
 
-// Delete a comment
 app.post('/comment/delete/:id', async (req, res) => {
   try {
+    const comment = await db.getCommentById(req.params.id);
     await db.deleteComment(req.params.id);
-    res.redirect('/');
-  } catch (err) {
-    res.status(500).send('Failed to delete comment');
+    res.redirect(`/#post-${comment.post_id}`);
+  } catch (error) {
+    console.error('Delete comment error:', error);
+    res.status(500).render('error', { message: 'Failed to delete comment' });
   }
 });
 
-// About page route
 app.get('/about', (req, res) => {
-  res.render('about'); // You'll need to create an about.ejs file
+  res.render('about');
 });
 
-// Contact page route
 app.get('/contact', (req, res) => {
-  res.render('contact'); // You'll need to create a contact.ejs file
+  res.render('contact');
 });
 
-const PORT = 3000;
-app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error('Global error handler:', err);
+  res.status(500).render('error', { message: 'Something went wrong!' });
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});

@@ -9,7 +9,6 @@ const pool = new Pool({
 });
 
 // --- Post Logic ---
-
 const getAllPosts = async () => {
   const result = await pool.query('SELECT * FROM posts ORDER BY created_at DESC');
   return result.rows;
@@ -33,10 +32,15 @@ const deletePost = async (id) => {
 };
 
 // --- Comment Logic ---
-
 const getAllComments = async () => {
   const result = await pool.query('SELECT * FROM comments ORDER BY created_at ASC');
   return result.rows;
+};
+
+// ADDED MISSING FUNCTION
+const getCommentById = async (id) => {
+  const result = await pool.query('SELECT * FROM comments WHERE id = $1', [id]);
+  return result.rows[0];
 };
 
 const createComment = async (postId, content) => {
@@ -52,16 +56,21 @@ const deleteComment = async (id) => {
 };
 
 // --- Recent Posts Logic ---
-
-const getRecentPosts = async () => {
-  const result = await pool.query(
-    'SELECT * FROM posts ORDER BY created_at DESC LIMIT 10' // ← changed from 3 to 10
+const getRecentPostsWithComments = async () => {
+  const posts = await pool.query(
+    'SELECT * FROM posts ORDER BY created_at DESC LIMIT 10'
   );
-  return result.rows;
+  const comments = await pool.query(
+    'SELECT * FROM comments ORDER BY created_at ASC'
+  );
+  
+  return posts.rows.map(post => ({
+    ...post,
+    comments: comments.rows.filter(c => c.post_id === post.id)
+  }));
 };
 
 // --- Export Functions ---
-
 module.exports = {
   getAllPosts,
   getPostById,
@@ -69,8 +78,9 @@ module.exports = {
   updatePost,
   deletePost,
   getAllComments,
+  getCommentById, // ADDED TO EXPORTS
   createComment,
   updateComment,
   deleteComment,
-  getRecentPosts
+  getRecentPostsWithComments
 };

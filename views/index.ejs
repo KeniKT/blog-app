@@ -274,63 +274,18 @@
         <a href="/contact">Contact</a>
       </nav>
     </div>
-    <div class="search-avatar">
-      <div class="search-box">
-        <div class="icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#49739c" viewBox="0 0 256 256">
-            <path d="M229.66,218.34l-50.07-50.06a88.11,88.11..." />
-          </svg>
-        </div>
-        <input type="text" placeholder="Search" />
-      </div>
-      <div class="avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/...');"></div>
-    </div>
+  
   </header>
 
-  <div class="layout-root">
-    <h2 class="posts-title">All Articles</h2>
-
-    <% posts.forEach(post => { %>
-      <div class="post-card">
-        <div class="post-content">
-          <h3 class="post-title"><%= post.title %></h3>
-          <p class="post-preview">
-            <%= post.content.substring(0, 100) + (post.content.length > 100 ? '...' : '') %>
-          </p>
-        </div>
-
-        <div class="comment-section">
-          <h4 class="comment-heading">Comments</h4>
-
-          <% (commentsByPost[post.id] || []).forEach(comment => { %>
-            <div class="comment-block">
-              <p class="comment-text"><%= comment.content %></p>
-              <div class="flex gap-2 mt-4">
-                <form method="POST" action="/comment/edit/<%= comment.id %>" class="flex gap-2">
-                  <input type="text" name="content" value="<%= comment.content %>" class="form-control" required>
-                  <button type="submit" class="btn btn-primary">Update</button>
-                </form>
-                <form method="POST" action="/comment/delete/<%= comment.id %>">
-                  <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
-              </div>
-            </div>
-          <% }) %>
-
-          <form method="POST" action="/comments/<%= post.id %>" class="mt-4 flex gap-2">
-            <input type="text" name="content" placeholder="Add a comment..." class="form-control" required>
-            <button type="submit" class="btn btn-primary">Comment</button>
-          </form>
-        </div>
-
-        <div class="post-actions-bar">
-          <a href="/edit/<%= post.id %>" class="btn btn-primary">Edit</a>
-          <form method="POST" action="/delete/<%= post.id %>">
-            <button type="submit" class="btn btn-danger">Delete</button>
-          </form>
-        </div>
-      </div>
-    <% }) %>
-  </div>
+ <!-- In index.ejs, replace the content with -->
+<div class="layout-root">
+  <h2 class="posts-title">All Articles</h2>
+  <% posts.forEach(post => { %>
+    <div class="post-card">
+      <h3 class="post-title"><%= post.title %></h3>
+      <p class="post-preview"><%= post.content %></p>
+    </div>
+  <% }) %>
+</div>
 </body>
 </html>

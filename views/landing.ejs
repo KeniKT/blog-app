@@ -34,56 +34,34 @@
       gap: 16px;
     }
 
-    nav a {
-      text-decoration: none;
-      color: #0d141c;
-      font-weight: 500;
-      font-size: 14px;
-      margin-right: 36px;
-    }
-
-    nav a:last-child {
-      margin-right: 0;
-    }
-
-    .search-avatar {
+    nav {
       display: flex;
       align-items: center;
       gap: 32px;
     }
 
-    .search-box {
-      min-width: 160px;
-      height: 40px;
-      display: flex;
-      border-radius: 8px;
-      overflow: hidden;
-      background-color: #e7edf4;
-    }
-
-    .search-box input {
-      border: none;
-      outline: none;
-      background-color: #e7edf4;
-      padding: 0 16px;
-      flex: 1;
-      font-size: 16px;
+    nav a {
+      text-decoration: none;
       color: #0d141c;
-    }
-
-    .search-box .icon {
-      padding-left: 16px;
+      font-weight: 500;
+      font-size: 14px;
       display: flex;
       align-items: center;
-      color: #49739c;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
     }
 
-    .avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 9999px;
-      background-size: cover;
-      background-position: center;
+    nav a:hover {
+      background-color: #f8fafc;
+    }
+
+    .nav-icon {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2;
     }
 
     .hero {
@@ -101,7 +79,6 @@
       min-height: 480px;
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
       border-radius: 12px;
       padding: 40px 20px;
       display: flex;
@@ -126,148 +103,160 @@
       margin: 8px 0 0;
     }
 
-    .read-more-btn {
-      background-color: #3d98f4;
-      color: white;
-      padding: 10px 20px;
-      font-weight: bold;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 16px;
-      width: fit-content;
-    }
-
     .recent-posts-title {
       font-size: 22px;
       font-weight: bold;
       margin: 32px 0 16px;
-    }
-
-    .posts-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(158px, 1fr));
-      gap: 12px;
-    }
-
-    .post {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .post-img {
-      width: 100%;
-      padding-top: 56.25%; /* 16:9 aspect ratio */
-      background-size: cover;
-      background-position: center;
-      border-radius: 8px;
-    }
-
-    .post p {
-      margin: 0;
-      font-weight: bold;
+      padding-top: 20px;
+      border-top: 1px solid #e7edf4;
     }
 
     .recent-post-box {
-  background-color: #ffffff;
-  border: 1px solid #e7edf4;
-  border-radius: 12px;
-  padding: 16px 20px;
-  margin-bottom: 24px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
-}
+      background-color: #ffffff;
+      border: 1px solid #e7edf4;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+      transition: transform 0.2s ease;
+    }
 
-.recent-post-title {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
+    .recent-post-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
 
-.recent-post-content {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #3a3a3a;
-  margin-bottom: 16px;
-}
+    .recent-post-content {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #3a3a3a;
+      margin-bottom: 20px;
+    }
 
-.comment-form {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 8px;
-}
+    /* Action Buttons */
+    .btn-icon {
+      padding: 8px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
 
-.comment-form textarea {
-  resize: vertical;
-  min-height: 60px;
-  padding: 10px;
-  font-size: 14px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
+    .btn-edit {
+      color: #3d98f4;
+    }
 
-.comment-form button {
-  align-self: flex-start;
-  background-color: #3d98f4;
-  color: #fff;
-  font-weight: 600;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
+    .btn-edit:hover {
+      background-color: #3d98f41a;
+      color: #2b7dc7;
+    }
 
-.comments-section {
-  margin-top: 16px;
-  padding-left: 10px;
-  border-left: 3px solid #d3e4f5;
-}
+    .btn-delete {
+      color: #dc2626;
+    }
 
-.comment {
-  margin-bottom: 10px;
-  font-size: 14px;
-  color: #4a4a4a;
-}
+    .btn-delete:hover {
+      background-color: #fee2e2;
+      color: #b91c1c;
+    }
 
-nav {
-    display: flex;
-    align-items: center;
-    gap: 32px;
-  }
+    .icon-sm {
+      width: 20px;
+      height: 20px;
+    }
 
-  nav a {
-    text-decoration: none;
-    color: #0d141c;
-    font-weight: 500;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 12px;
-    border-radius: 8px;
-    transition: all 0.2s ease;
-  }
+    .post-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+    }
 
-  nav a:hover {
-    background-color: #f8fafc;
-  }
+    .comment-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
 
-  .nav-icon {
-    width: 18px;
-    height: 18px;
-    stroke: currentColor;
-    stroke-width: 2;
-  }
+    .comments-section {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid #e7edf4;
+    }
+
+    .comment {
+      margin-bottom: 16px;
+      padding: 12px;
+      background-color: #f8fafc;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    .comment-form {
+      margin-top: 24px;
+    }
+
+    .comment-form textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #e7edf4;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      font-family: inherit;
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .btn-primary {
+      background-color: #3d98f4;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #2b7dc7;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 16px;
+        padding: 12px 20px;
+      }
+
+      .hero-banner h1 {
+        font-size: 28px;
+      }
+
+      .recent-post-box {
+        padding: 16px;
+      }
+
+      .comment-actions {
+        flex-direction: column;
+      }
+    }
+
+    @keyframes highlight {
+      from { background-color: rgba(61, 152, 244, 0.1); }
+      to { background-color: transparent; }
+    }
   </style>
 </head>
 <body>
-
-<header>
+  <header>
     <div class="logo-container">
       <div class="logo">
         <div style="width: 16px; height: 16px;">
-          <!-- SVG Logo -->
           <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M39.5563 34.1455V13.8546..." fill="currentColor"></path>
             <path d="M10.4485 13.8519C10.4749 13.9271..." fill="currentColor"></path>
@@ -275,34 +264,20 @@ nav {
         </div>
         <h2 style="font-size: 18px; font-weight: bold; margin: 0;">Tech Blog</h2>
       </div>
-     <nav>
-  <a href="/">Home</a>
-  <a href="/blog">Articles</a>
-  <a href="/about">About</a>
-  <a href="/contact">Contact</a>
-  <a href="/new">
-    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-    </svg>
-    New Blog
-  </a>
-</nav>
-    </div>
-
-    <div class="search-avatar">
-      <div class="search-box">
-        <div class="icon">
-          <!-- Search Icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#49739c" viewBox="0 0 256 256">
-            <path d="M229.66,218.34l-50.07-50.06a88.11,88.11..." />
+      <nav>
+        <a href="/">Home</a>
+        <a href="/blog">Articles</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="/new">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
           </svg>
-        </div>
-        <input type="text" placeholder="Search" />
-      </div>
-      <div class="avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/...');"></div>
+          New Blog
+        </a>
+      </nav>
     </div>
   </header>
-
 
   <div class="hero">
     <div class="hero-inner">
@@ -313,34 +288,81 @@ nav {
         </div>
       </div>
 
-      <h2 class="recent-posts-title">Recent Posts</h2>
+      <h2 class="recent-posts-title" id="posts-top">Recent Posts</h2>
 
-<% posts.forEach(post => { %>
-  <div class="recent-post-box">
-    <h3 class="recent-post-title"><%= post.title %></h3>
-    <p class="recent-post-content"><%= post.content.length > 200 ? post.content.substring(0, 200) + '...' : post.content %></p>
+      <% posts.forEach(post => { %>
+        <div class="recent-post-box" id="post-<%= post.id %>">
+          <h3 class="recent-post-title"><%= post.title %></h3>
+          <p class="recent-post-content"><%= post.content %></p>
 
-    <!-- Comment Form -->
-    <form action="/comments/<%= post.id %>" method="POST" class="comment-form">
-      <textarea name="content" placeholder="Leave a comment..." required></textarea>
-      <button type="submit">Comment</button>
-    </form>
+          <div class="post-actions">
+            <a href="/edit/<%= post.id %>" class="btn-icon btn-edit" title="Edit Post">
+              <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                      d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+              </svg>
+            </a>
 
-    <!-- Display Comments -->
-    <% if (post.comments && post.comments.length > 0) { %>
-      <div class="comments-section">
-        <% post.comments.forEach(comment => { %>
-          <div class="comment">
-            <p><%= comment.content %></p>
+            <form method="POST" action="/delete/<%= post.id %>" class="inline-form">
+              <button type="submit" class="btn-icon btn-delete" title="Delete Post">
+                <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                </svg>
+              </button>
+            </form>
           </div>
-        <% }) %>
-      </div>
-    <% } %>
-  </div>
-<% }) %>
-      </div>
+
+          <div class="comments-section">
+            <h4>Comments</h4>
+            <% if (post.comments && post.comments.length > 0) { %>
+              <% post.comments.forEach(comment => { %>
+                <div class="comment">
+                  <p><%= comment.content %></p>
+                  <div class="comment-actions">
+                    <form method="POST" action="/comment/edit/<%= comment.id %>" class="flex gap-2">
+                      <input type="text" name="content" value="<%= comment.content %>" class="form-control" required>
+                      <button type="submit" class="btn-icon btn-edit" title="Update Comment">
+                        <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                        </svg>
+                      </button>
+                    </form>
+
+                    <form method="POST" action="/comment/delete/<%= comment.id %>">
+                      <button type="submit" class="btn-icon btn-delete" title="Delete Comment">
+                        <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                        </svg>
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              <% }) %>
+            <% } %>
+
+            <form method="POST" action="/comments/<%= post.id %>" class="comment-form">
+              <textarea name="content" placeholder="Write your comment..." required></textarea>
+              <button type="submit" class="btn btn-primary">Add Comment</button>
+            </form>
+          </div>
+        </div>
+      <% }) %>
     </div>
   </div>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if(window.location.hash) {
+        const element = document.querySelector(window.location.hash);
+        if(element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+          element.style.animation = 'highlight 1s ease-out';
+        }
+      }
+    });
+  </script>
 </body>
 </html>

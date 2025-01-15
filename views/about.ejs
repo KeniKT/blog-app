@@ -1,212 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About Us - Tech Blog</title>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900&display=swap" rel="stylesheet" />
   <style>
-    /* Consistent with landing page */
     body {
       margin: 0;
-      font-family: 'Newsreader', 'Noto Sans', sans-serif;
-      background-color: #f8fafc;
-      color: #0d141c;
+      font-family: 'Noto Sans', sans-serif;
+      background: #f9fafb;
+      color: #1f2937;
+      line-height: 1.6;
     }
 
     header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid #e7edf4;
-      padding: 12px 40px;
-      background-color: #fff;
+      background-color: #ffffff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .logo-container {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 32px;
     }
 
     .logo {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 0.5rem;
+      color: #111827;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
 
     nav a {
       text-decoration: none;
-      color: #0d141c;
+      font-size: 1rem;
+      color: #374151;
       font-weight: 500;
-      font-size: 14px;
-      margin-right: 36px;
-    }
-
-    nav a:last-child {
-      margin-right: 0;
-    }
-
-    .search-avatar {
+      padding: 0.4rem 0.75rem;
+      border-radius: 0.375rem;
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 0.4rem;
+      transition: all 0.3s ease;
     }
 
-    .search-box {
-      min-width: 160px;
-      height: 40px;
-      display: flex;
-      border-radius: 8px;
-      overflow: hidden;
-      background-color: #e7edf4;
+    nav a:hover {
+      background-color: rgba(79, 70, 229, 0.1);
+      color: #4F46E5;
     }
 
-    .search-box input {
-      border: none;
-      outline: none;
-      background-color: #e7edf4;
-      padding: 0 16px;
-      flex: 1;
-      font-size: 16px;
-      color: #0d141c;
+    .layout-root {
+      padding: 3rem 2rem;
+      background: linear-gradient(to right, #eef2ff, #f8fafc);
+      min-height: 100vh;
     }
 
-    .search-box .icon {
-      padding-left: 16px;
-      display: flex;
-      align-items: center;
-      color: #49739c;
-    }
-
-    .avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 9999px;
-      background-size: cover;
-      background-position: center;
-    }
-
-    /* About page specific content styling */
-    .about-hero {
-      padding: 40px 24px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .about-inner {
-      max-width: 920px;
-      width: 100%;
-    }
-
-    .about-content {
-      background-color: #ffffff;
-      border: 1px solid #e7edf4;
-      border-radius: 12px;
-      padding: 40px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    .content-area {
+      max-width: 900px;
+      margin: 0 auto;
     }
 
     .about-title {
-      font-size: 36px;
-      font-weight: 900;
-      margin-bottom: 24px;
-      color: #0d141c;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 1rem;
     }
 
     .about-text {
-      font-size: 16px;
-      line-height: 1.8;
-      color: #3a3a3a;
-      margin-bottom: 24px;
+      margin-bottom: 1rem;
+      color: #4b5563;
+      font-weight: 400;
     }
 
     .team-section {
-      margin-top: 40px;
+      margin-top: 3rem;
     }
 
     .team-title {
-      font-size: 24px;
+      font-size: 1.5rem;
       font-weight: 700;
-      margin-bottom: 20px;
-      color: #0d141c;
+      margin-bottom: 1.5rem;
+      color: #1f2937;
     }
 
     .team-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 24px;
+      gap: 1.5rem;
     }
 
     .team-member {
-      background-color: #f8fbff;
-      border: 1px solid #e7edf4;
-      border-radius: 8px;
-      padding: 20px;
-      text-align: center;
+      background: #ffffff;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     }
 
     .member-avatar {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      margin: 0 auto 16px;
-      background-color: #dbeafe;
+      width: 48px;
+      height: 48px;
+      background-color: #4F46E5;
+      color: white;
+      font-weight: 700;
+      font-size: 1.25rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #3d98f4;
-      font-size: 36px;
-      font-weight: 700;
+      border-radius: 9999px;
+      margin-bottom: 1rem;
+      user-select: none;
     }
 
     .member-name {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 8px;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0 0 0.25rem 0;
+      color: #111827;
     }
 
     .member-role {
-      font-size: 14px;
-      color: #64748b;
-      margin-bottom: 16px;
+      font-weight: 500;
+      color: #6b7280;
+      margin: 0 0 0.75rem 0;
     }
 
     .member-bio {
-      font-size: 14px;
-      line-height: 1.6;
-      color: #3a3a3a;
+      margin: 0;
+      color: #4b5563;
+      font-weight: 400;
     }
 
     @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        gap: 16px;
-        padding: 12px 20px;
-      }
-      
-      .logo-container {
-        width: 100%;
-        justify-content: space-between;
-      }
-      
       nav {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 0.5rem;
       }
-      
-      nav a {
-        margin-right: 0;
+
+      .about-title {
+        font-size: 1.5rem;
       }
-      
-      .search-avatar {
-        width: 100%;
-        justify-content: space-between;
+
+      .team-title {
+        font-size: 1.25rem;
       }
-      
-      .about-content {
-        padding: 24px;
+
+      .member-name {
+        font-size: 1.1rem;
       }
     }
   </style>
@@ -230,56 +182,53 @@
         <a href="/contact">Contact</a>
       </nav>
     </div>
-   
   </header>
 
-  <div class="about-hero">
-    <div class="about-inner">
-      <div class="about-content">
-        <h1 class="about-title">About Our Blog</h1>
-        <p class="about-text">
-          Welcome to Tech Blog, your premier destination for cutting-edge technology insights, 
-          in-depth tutorials, and the latest news about the digital world. Founded in 2023, 
-          we're committed to delivering high-quality content that empowers our readers to 
-          navigate the rapidly evolving tech landscape.
-        </p>
-        <p class="about-text">
-          Our team of passionate writers, developers, and tech enthusiasts brings together 
-          decades of industry experience to provide you with accurate, engaging, and 
-          actionable content. Whether you're a seasoned professional or just starting your 
-          tech journey, you'll find valuable resources here.
-        </p>
+  <div class="layout-root">
+    <div class="content-area">
+      <h1 class="about-title">About Our Blog</h1>
+      <p class="about-text">
+        Welcome to Tech Blog, your premier destination for cutting-edge technology insights, 
+        in-depth tutorials, and the latest news about the digital world. Founded in 2023, 
+        we're committed to delivering high-quality content that empowers our readers to 
+        navigate the rapidly evolving tech landscape.
+      </p>
+      <p class="about-text">
+        Our team of passionate writers, developers, and tech enthusiasts brings together 
+        decades of industry experience to provide you with accurate, engaging, and 
+        actionable content. Whether you're a seasoned professional or just starting your 
+        tech journey, you'll find valuable resources here.
+      </p>
 
-        <div class="team-section">
-          <h2 class="team-title">Meet Our Team</h2>
-          <div class="team-grid">
-            <div class="team-member">
-              <div class="member-avatar">JD</div>
-              <h3 class="member-name">John Doe</h3>
-              <p class="member-role">Founder & Editor-in-Chief</p>
-              <p class="member-bio">
-                10+ years in tech journalism. Former lead developer at TechCorp. 
-                Passionate about making complex topics accessible.
-              </p>
-            </div>
-            <div class="team-member">
-              <div class="member-avatar">AS</div>
-              <h3 class="member-name">Alice Smith</h3>
-              <p class="member-role">Senior Writer</p>
-              <p class="member-bio">
-                Specializes in AI and machine learning. Holds a PhD in Computer Science 
-                from Stanford University.
-              </p>
-            </div>
-            <div class="team-member">
-              <div class="member-avatar">RJ</div>
-              <h3 class="member-name">Robert Johnson</h3>
-              <p class="member-role">Web Technologies Expert</p>
-              <p class="member-bio">
-                Full-stack developer with expertise in modern JavaScript frameworks. 
-                Creator of several popular open-source projects.
-              </p>
-            </div>
+      <div class="team-section">
+        <h2 class="team-title">Meet Our Team</h2>
+        <div class="team-grid">
+          <div class="team-member">
+            <div class="member-avatar">JD</div>
+            <h3 class="member-name">John Doe</h3>
+            <p class="member-role">Founder & Editor-in-Chief</p>
+            <p class="member-bio">
+              10+ years in tech journalism. Former lead developer at TechCorp. 
+              Passionate about making complex topics accessible.
+            </p>
+          </div>
+          <div class="team-member">
+            <div class="member-avatar">AS</div>
+            <h3 class="member-name">Alice Smith</h3>
+            <p class="member-role">Senior Writer</p>
+            <p class="member-bio">
+              Specializes in AI and machine learning. Holds a PhD in Computer Science 
+              from Stanford University.
+            </p>
+          </div>
+          <div class="team-member">
+            <div class="member-avatar">RJ</div>
+            <h3 class="member-name">Robert Johnson</h3>
+            <p class="member-role">Web Technologies Expert</p>
+            <p class="member-bio">
+              Full-stack developer with expertise in modern JavaScript frameworks. 
+              Creator of several popular open-source projects.
+            </p>
           </div>
         </div>
       </div>

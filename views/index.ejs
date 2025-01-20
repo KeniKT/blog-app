@@ -536,7 +536,7 @@
       </div>
 
       <div class="articles-grid">
-        <!-- Example posts - replace with your EJS loop -->
+       
         <% if (posts && posts.length > 0) { %>
           <% posts.forEach(post => { %>
             <article class="post-card" tabindex="0" role="article">
@@ -544,12 +544,7 @@
               <p class="post-preview"><%= post.content %></p>
               <div class="post-meta">
                 <span>Published recently</span>
-                <a href="/post/<%= post.id %>" class="read-more">
-                  Read more
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                  </svg>
-                </a>
+               
               </div>
             </article>
           <% }) %>

@@ -2,188 +2,526 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>New Post - Tech Blog</title>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create New Post - Tech Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: 'Noto Sans', sans-serif;
-      background: #f9fafb;
-      color: #1f2937;
-      line-height: 1.6;
-    }
+  :root {
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    --primary-light: #dbeafe;
+    --accent: #8b5cf6;
+    --accent-hover: #7c3aed;
+    --background: #0f0f23;
+    --surface: #1a1a3a;
+    --surface-light: #252545;
+    --text-primary: #ffffff;
+    --text-secondary: #a8a8b3;
+    --text-muted: #6c6c89;
+    --border: #2a2a4a;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-accent: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-surface: linear-gradient(135deg, #1a1a3a 0%, #252545 100%);
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
 
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--background);
+    color: var(--text-primary);
+    line-height: 1.7;
+    font-size: 16px;
+    overflow-x: hidden;
+  }
+
+  /* Animated background */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+    z-index: -1;
+    animation: backgroundPulse 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes backgroundPulse {
+    0% { opacity: 0.5; }
+    100% { opacity: 0.8; }
+  }
+
+  header {
+    background: rgba(26, 26, 58, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 1.25rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-md);
+  }
+
+  .logo-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-primary);
+    font-weight: 800;
+    font-size: 1.5rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .logo h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .logo div {
+    width: 32px !important;
+    height: 32px !important;
+    background: var(--gradient-primary);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-glow);
+    animation: logoGlow 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes logoGlow {
+    0% { box-shadow: 0 0 10px rgba(59, 130, 246, 0.3); }
+    100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.6); }
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  nav a {
+    text-decoration: none;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    padding: 0.75rem 1.25rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+  }
+
+  nav a:hover::before {
+    left: 100%;
+  }
+
+  nav a:hover {
+    background: var(--gradient-primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .layout-root {
+    padding: 4rem 2rem;
+    background: var(--gradient-surface);
+    min-height: calc(100vh - 80px);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .layout-root::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
+    animation: pageFloat 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes pageFloat {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(-30px, -30px) rotate(3deg); }
+  }
+
+  .content-area {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    background: var(--surface);
+    padding: 3rem;
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    animation: contentSlide 1s ease-out;
+  }
+
+  @keyframes contentSlide {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .content-area::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+  }
+
+  .content-area::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.03) 0%, rgba(139, 92, 246, 0.03) 100%);
+    pointer-events: none;
+  }
+
+  .page-title {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 900;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, #ffffff 0%, #a8a8b3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+
+  .page-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 4px;
+    background: var(--gradient-primary);
+    border-radius: 2px;
+  }
+
+  .new-post-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: relative;
+    z-index: 1;
+    animation: formSlide 0.8s ease-out 0.3s both;
+  }
+
+  @keyframes formSlide {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    position: relative;
+  }
+
+  label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    position: relative;
+    padding-left: 1rem;
+  }
+
+  label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 20px;
+    background: var(--gradient-primary);
+    border-radius: 2px;
+  }
+
+  input[type="text"],
+  textarea {
+    padding: 1rem 1.5rem;
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    font-family: inherit;
+    font-size: 1rem;
+    background: var(--surface-light);
+    color: var(--text-primary);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    resize: vertical;
+    position: relative;
+    backdrop-filter: blur(10px);
+  }
+
+  input[type="text"]::placeholder,
+  textarea::placeholder {
+    color: var(--text-muted);
+  }
+
+  input[type="text"]:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1), var(--shadow-glow);
+    background: rgba(37, 37, 69, 0.8);
+    transform: translateY(-2px);
+  }
+
+  textarea {
+    min-height: 200px;
+    font-family: 'JetBrains Mono', monospace;
+    line-height: 1.6;
+  }
+
+  .button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  button[type="submit"],
+  .btn-outline {
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 1rem 2rem;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    user-select: none;
+    position: relative;
+    overflow: hidden;
+    min-width: 150px;
+  }
+
+  button[type="submit"]::before,
+  .btn-outline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  button[type="submit"]:hover::before,
+  .btn-outline:hover::before {
+    left: 100%;
+  }
+
+  button[type="submit"] {
+    background: var(--gradient-primary);
+    color: white;
+    box-shadow: var(--shadow-md);
+    font-weight: 700;
+  }
+
+  button[type="submit"]:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(59, 130, 246, 0.4);
+  }
+
+  button[type="submit"]:active {
+    transform: translateY(-1px) scale(1.01);
+  }
+
+  .btn-outline {
+    background: var(--surface-light);
+    border: 2px solid var(--border);
+    color: var(--text-primary);
+    backdrop-filter: blur(10px);
+  }
+
+  .btn-outline:hover {
+    background: var(--gradient-accent);
+    color: white;
+    border-color: transparent;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-outline:active {
+    transform: translateY(-1px) scale(1.01);
+  }
+
+  /* Enhanced focus states for accessibility */
+  input[type="text"]:focus,
+  textarea:focus,
+  button[type="submit"]:focus,
+  .btn-outline:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  nav a:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--surface);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-hover);
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
     header {
-      background-color: #ffffff;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-      padding: 1rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      padding: 1rem;
     }
-
+    
     .logo-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: #111827;
+      flex-direction: column;
+      gap: 1rem;
     }
 
     nav {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
     }
 
     nav a {
-      text-decoration: none;
-      font-size: 1rem;
-      color: #374151;
-      font-weight: 500;
-      padding: 0.4rem 0.75rem;
-      border-radius: 0.375rem;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
     }
 
-    nav a:hover {
-      background-color: rgba(79, 70, 229, 0.1);
-      color: #4F46E5;
-    }
-
-    main.layout-root {
-      padding: 3rem 2rem;
-      background: linear-gradient(to right, #eef2ff, #f8fafc);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
+    .layout-root {
+      padding: 2rem 1rem;
     }
 
     .content-area {
-      max-width: 720px;
-      width: 100%;
-      background-color: #ffffff;
-      border-radius: 0.5rem;
-      padding: 2.5rem 3rem;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-      color: #1f2937;
+      padding: 2rem 1.5rem;
     }
 
-    h1.page-title {
-      font-size: 1.75rem;
-      font-weight: 700;
-      margin-bottom: 2rem;
-      color: #1f2937;
-    }
-
-    form.new-post-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    label {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #374151;
-    }
-
-    input[type="text"],
-    textarea {
-      padding: 0.75rem 1rem;
-      border: 1px solid #d1d5db;
-      border-radius: 0.375rem;
-      font-family: inherit;
-      font-size: 1rem;
-      background-color: #f9fafb;
-      transition: border-color 0.2s;
-      resize: vertical;
-    }
-
-    input[type="text"]:focus,
-    textarea:focus {
-      outline: none;
-      border-color: #4F46E5;
-      box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
-      background-color: #fff;
-    }
-
-    textarea {
-      min-height: 200px;
+    .page-title {
+      font-size: 2rem;
     }
 
     .button-group {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1.5rem;
+      flex-direction: column;
+      align-items: center;
     }
 
     button[type="submit"],
     .btn-outline {
-      font-weight: 600;
-      font-size: 1rem;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.375rem;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-      border: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      user-select: none;
+      width: 100%;
+      max-width: 300px;
     }
+  }
 
-    button[type="submit"] {
-      background-color: #4F46E5;
-      color: white;
-      border: none;
-    }
+  /* Smooth transitions for all interactive elements */
+  * {
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
 
-    button[type="submit"]:hover {
-      background-color: #4338ca;
-    }
+  /* Form validation styles */
+  input:invalid {
+    border-color: var(--error);
+  }
 
-    .btn-outline {
-      background-color: transparent;
-      border: 1px solid #d1d5db;
-      color: #374151;
-    }
+  input:invalid:focus {
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+  }
 
-    .btn-outline:hover {
-      background-color: #f3f4f6;
-    }
-
-    @media (max-width: 768px) {
-      header {
-        padding: 1rem 1rem;
-      }
-
-      .content-area {
-        padding: 1.5rem 2rem;
-        max-width: 100%;
-      }
-
-      h1.page-title {
-        font-size: 1.5rem;
-      }
-    }
+  /* Success state */
+  .form-success {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+    border: 2px solid var(--success);
+    color: var(--success);
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: 600;
+  }
   </style>
 </head>
 <body>
@@ -213,18 +551,130 @@
       <form method="POST" action="/posts" class="new-post-form">
         <div class="form-group">
           <label for="title">Post Title</label>
-          <input type="text" id="title" name="title" placeholder="Post Title" required />
+          <input type="text" id="title" name="title" placeholder="Enter an engaging title for your post..." required />
         </div>
         <div class="form-group">
           <label for="content">Content</label>
-          <textarea id="content" name="content" placeholder="Write your post content here..." required></textarea>
+          <textarea id="content" name="content" placeholder="Share your thoughts, insights, and ideas here..." required></textarea>
         </div>
         <div class="button-group">
-          <button type="submit">Publish Post</button>
-          <a href="/" class="btn-outline" role="button">Cancel</a>
+          <button type="submit">🚀 Publish Post</button>
+          <a href="/" class="btn-outline" role="button">← Cancel</a>
         </div>
       </form>
     </div>
   </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.querySelector('.new-post-form');
+      const titleInput = document.getElementById('title');
+      const contentTextarea = document.getElementById('content');
+      const submitBtn = document.querySelector('button[type="submit"]');
+
+      // Add enhanced form interactions
+      [titleInput, contentTextarea].forEach(field => {
+        field.addEventListener('focus', function() {
+          this.parentElement.style.transform = 'scale(1.02)';
+          this.parentElement.style.zIndex = '10';
+        });
+
+        field.addEventListener('blur', function() {
+          this.parentElement.style.transform = 'scale(1)';
+          this.parentElement.style.zIndex = '1';
+        });
+
+        // Auto-resize textarea
+        if (field.tagName === 'TEXTAREA') {
+          field.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = this.scrollHeight + 'px';
+          });
+        }
+      });
+
+      // Enhanced submit button interaction
+      submitBtn.addEventListener('mousedown', function() {
+        this.style.transform = 'translateY(-1px) scale(0.98)';
+      });
+
+      submitBtn.addEventListener('mouseup', function() {
+        this.style.transform = '';
+      });
+
+      // Form validation with visual feedback
+      form.addEventListener('submit', function(e) {
+        const title = titleInput.value.trim();
+        const content = contentTextarea.value.trim();
+
+        if (!title || !content) {
+          e.preventDefault();
+          
+          // Add shake animation to empty fields
+          if (!title) {
+            titleInput.style.animation = 'shake 0.5s ease-in-out';
+            setTimeout(() => titleInput.style.animation = '', 500);
+          }
+          if (!content) {
+            contentTextarea.style.animation = 'shake 0.5s ease-in-out';
+            setTimeout(() => contentTextarea.style.animation = '', 500);
+          }
+        } else {
+          // Success animation
+          submitBtn.innerHTML = '✨ Publishing...';
+          submitBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+        }
+      });
+
+      // Character count for textarea
+      const charCount = document.createElement('div');
+      charCount.style.cssText = `
+        position: absolute;
+        bottom: 10px;
+        right: 15px;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        background: var(--surface);
+        padding: 2px 6px;
+        border-radius: 4px;
+        pointer-events: none;
+      `;
+      contentTextarea.parentElement.style.position = 'relative';
+      contentTextarea.parentElement.appendChild(charCount);
+
+      contentTextarea.addEventListener('input', function() {
+        charCount.textContent = this.value.length + ' characters';
+      });
+
+      // Initialize character count
+      charCount.textContent = '0 characters';
+
+      // Add keyboard shortcuts
+      document.addEventListener('keydown', function(e) {
+        // Ctrl/Cmd + Enter to submit
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+          e.preventDefault();
+          form.submit();
+        }
+        
+        // Escape to cancel
+        if (e.key === 'Escape') {
+          const cancelBtn = document.querySelector('.btn-outline');
+          if (cancelBtn) cancelBtn.click();
+        }
+      });
+    });
+
+    // Add CSS animation keyframes dynamically
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        75% { transform: translateX(5px); }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
 </body>
 </html>
